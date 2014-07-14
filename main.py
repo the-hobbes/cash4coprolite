@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 import webapp2
+import logging
+import handlers as handler
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
