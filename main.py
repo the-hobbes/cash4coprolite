@@ -16,12 +16,14 @@
 #
 import webapp2
 import logging
-import handlers as handler
+from handlers.base_handler import BaseHandler
+from handlers.Login import LoginHandler
 
-class MainHandler(webapp2.RequestHandler):
+class MainHandler(BaseHandler):
     def get(self):
-        self.response.write('Hello world!')
+        self.render('index.html')
 
-app = webapp2.WSGIApplication([
-    ('/', MainHandler)
-], debug=True)
+app = webapp2.WSGIApplication([ 
+  ('/', MainHandler),
+  ('/login', LoginHandler)
+  ], debug=True)

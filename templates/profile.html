@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block head %}
+  {{ super() }}
+  <!-- other head stuff goes here, like page specific css -->
+  <!-- TODO(pheven): style this page. mobile first! -->
+{% endblock %}
+{% block header %}<h1>Hello {{user}}</h1>{% endblock %}
+{% block content %}
+  <!-- TODO(pheven): implement client side validation -->
+  <form id="form_gather_information" name="form_gather_information">
+    <label for="form_gather_information">Hourly Wage: </label>
+    <input type="number" name="form_hourly_wage" id="form_gather_information">
+    <p>or...</p>
+    <label for="form_gather_information">Yearly Wage: </label>
+    <input type="number" name="form_yearly_wage" id="form_gather_information">
+  </form>
+
+  <form id="form_gather_information" name="form_gather_information">
+    <label for="form_gather_information">Work Address Line 1: </label>
+    <input type="text" name="input_address_1" id="form_gather_information">
+
+    <label for="form_gather_information">Work Address Line 2: </label>
+    <input type="text" name="input_address_2" id="form_gather_information">
+
+    <label for="form_gather_information">City: </label>
+    <input type="text" name="input_city" id="form_gather_information">
+
+    <label for="form_gather_information">ZIP/Postal Code: </label>
+    <input type="number" name="input_zip" id="form_gather_information">
+
+    <label for="form_gather_information">Country: </label>
+    <input type="text" name="input_city" id="form_gather_information">
+
+    {% import "macros.html" as macros %}
+    {{ macros.select_country(form_name="form_gather_information") }}
+  </form>
+
+{% endblock %}

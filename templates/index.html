@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block head %}
+    {{ super() }}
+    <!-- other head stuff goes here, like page specific css -->
+{% endblock %}
+{% block header %}
+  <h1>Welcome to this app</h1>
+{% endblock %}
+{% block content %}
+  <a href="/login">Login</a>
+{% endblock %}
