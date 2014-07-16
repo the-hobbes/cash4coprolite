@@ -7,16 +7,15 @@
 {% endblock %}
 {% block header %}<h1>Hello {{user}}</h1>{% endblock %}
 {% block content %}
-  <!-- TODO(pheven): implement client side validation -->
-  <form id="form_gather_information" name="form_gather_information">
+  <!-- TODO(pheven): implement client side validation, js and html5 -->
+  <form  action="/profile" method="post" 
+  id="form_gather_information" name="form_gather_information">
     <label for="form_gather_information">Hourly Wage: </label>
     <input type="number" name="form_hourly_wage" id="form_gather_information">
     <p>or...</p>
     <label for="form_gather_information">Yearly Wage: </label>
     <input type="number" name="form_yearly_wage" id="form_gather_information">
-  </form>
 
-  <form id="form_gather_information" name="form_gather_information">
     <label for="form_gather_information">Work Address Line 1: </label>
     <input type="text" name="input_address_1" id="form_gather_information">
 
@@ -34,6 +33,12 @@
 
     {% import "macros.html" as macros %}
     {{ macros.select_country(form_name="form_gather_information") }}
+    
+    <button for="form_gather_information" id="button_submit" 
+    type="submit">Submit</button>
+    <button for="form_gather_information" id="button_submit"
+    type="cancel">Cancel</button>
+    <!-- TODO(pheven): hook submit and cancel buttons up to appropriate handlers (python for submit and js for cancel) -->
   </form>
 
 {% endblock %}

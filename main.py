@@ -17,7 +17,7 @@
 import webapp2
 import logging
 from handlers.base_handler import BaseHandler
-from handlers.Login import LoginHandler
+from handlers.Profile import LoginHandler
 
 class MainHandler(BaseHandler):
     def get(self):
@@ -25,5 +25,9 @@ class MainHandler(BaseHandler):
 
 app = webapp2.WSGIApplication([ 
   ('/', MainHandler),
-  ('/login', LoginHandler)
+  ('/login', LoginHandler),
+  ('/profile', LoginHandler)
   ], debug=True)
+
+# TODO(pheven): https://developers.google.com/appengine/docs/python/users/
+# enfore sign in with app.yaml file, and look at the above link
