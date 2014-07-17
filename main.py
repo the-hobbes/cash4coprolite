@@ -24,9 +24,9 @@ class MainHandler(BaseHandler):
         self.render('index.html')
 
 app = webapp2.WSGIApplication([ 
-  ('/', MainHandler),
-  ('/login', LoginHandler),
-  ('/profile', LoginHandler)
+    ('/', MainHandler),
+    ('/login', LoginHandler),
+    ('/profile', LoginHandler)
   ], debug=True)
 
 # TODO(pheven): https://developers.google.com/appengine/docs/python/users/

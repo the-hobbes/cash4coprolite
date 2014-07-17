@@ -12,27 +12,31 @@
   id="form_gather_information" name="form_gather_information">
     <label for="form_gather_information">Hourly Wage: </label>
     <input type="number" name="form_hourly_wage" id="form_gather_information">
+    <div class="error">{{ error_wage_hourly }}</div>
     <p>or...</p>
     <label for="form_gather_information">Yearly Wage: </label>
     <input type="number" name="form_yearly_wage" id="form_gather_information">
+    <div class="error">{{ error_wage_yearly }}</div>
 
     <label for="form_gather_information">Work Address Line 1: </label>
     <input type="text" name="input_address_1" id="form_gather_information">
+    <div class="error">{{ error_address_street_1 }}</div>
 
     <label for="form_gather_information">Work Address Line 2: </label>
     <input type="text" name="input_address_2" id="form_gather_information">
+    <div class="error">{{ error_address_street_2 }}</div>
 
     <label for="form_gather_information">City: </label>
     <input type="text" name="input_city" id="form_gather_information">
+    <div class="error">{{ error_address_city }}</div>
 
     <label for="form_gather_information">ZIP/Postal Code: </label>
     <input type="number" name="input_zip" id="form_gather_information">
-
-    <label for="form_gather_information">Country: </label>
-    <input type="text" name="input_city" id="form_gather_information">
+    <div class="error">{{ error_address_zip }}</div>
 
     {% import "macros.html" as macros %}
     {{ macros.select_country(form_name="form_gather_information") }}
+    <div class="error">{{ error_address_country }}</div>
     
     <button for="form_gather_information" id="button_submit" 
     type="submit">Submit</button>
