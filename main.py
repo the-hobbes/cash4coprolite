@@ -15,9 +15,14 @@
 # limitations under the License.
 #
 import webapp2
-import logging
 from handlers.base_handler import BaseHandler
 from handlers.Profile import LoginHandler
+
+TESTING = True
+if TESTING:
+  import logging  
+  from testing.TestingHandler import *
+  
 
 class MainHandler(BaseHandler):
     def get(self):
@@ -26,7 +31,8 @@ class MainHandler(BaseHandler):
 app = webapp2.WSGIApplication([ 
     ('/', MainHandler),
     ('/login', LoginHandler),
-    ('/profile', LoginHandler)
+    ('/profile', LoginHandler),
+    ('/testing', TestingHandler),
   ], debug=True)
 
 # TODO(pheven): https://developers.google.com/appengine/docs/python/users/
