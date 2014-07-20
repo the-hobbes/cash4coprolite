@@ -7,11 +7,20 @@
 {% endblock %}
 {% block header %}<h1>The following tests are available:</h1>{% endblock %}
 {% block content %}
-  <form  action="/profile" method="post" id="form_testing" name="form_testing">
+  <form  action="/testing" method="post" id="form_testing" name="form_testing">
+  
     <label for="form_testing">Datastore tests: </label>
-    <input type="number" name="form_hourly_wage" id="form_testing">
+    <input type="checkbox" name="test_choice" value="test_datastore">
     <div id="test_result">Datastore tests are: {{ result }} </div>
 
+    <br>
+
+    <label for="form_testing">Some other tests: </label>
+    <input type="checkbox" name="test_choice" value="test_something">
+    <div id="test_result">Some tests are: {{ result }} </div>
+
+    <br>
+    
     <button for="form_testing" id="button_submit" type="submit">Submit</button>
     <button for="form_testing" id="button_submit" type="cancel">Cancel</button>
   </form> 

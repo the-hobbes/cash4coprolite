@@ -21,7 +21,7 @@ from handlers.Profile import LoginHandler
 TESTING = True
 if TESTING:
   import logging  
-  from testing.TestingHandler import *
+  from testing.TestingHandler import TestingHandler
   
 
 class MainHandler(BaseHandler):
