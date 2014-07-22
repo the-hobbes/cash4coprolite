@@ -4,24 +4,81 @@
   {{ super() }}
   <!-- other head stuff goes here, like page specific css -->
   <!-- TODO(pheven): style this page. mobile first! -->
+  <link rel="stylesheet" type="text/css" href="../css/testing.css">
 {% endblock %}
 {% block header %}<h1>The following tests are available:</h1>{% endblock %}
 {% block content %}
+  <h2>Examine the logs for more verbose information.</h2>
   <form  action="/testing" method="post" id="form_testing" name="form_testing">
-  
-    <label for="form_testing">Datastore tests: </label>
-    <input type="checkbox" name="test_choice" value="test_datastore">
-    <div id="test_result">Datastore tests are: {{ result }} </div>
+    
+    <div>
+      <label for="test_datastore_write">Datastore write tests:</label>
+      <input type="checkbox" name="test_choice" value="test_datastore_write" 
+      id="test_datastore_write">
+      {% if test_results.result_datastore_write %}
+        {% set result = test_results.result_datastore_write %}
+        <div class="{{result}}">Datastore write tests are: {{ result }} </div>
+      {% endif %}
+    </div>
 
-    <br>
+    <div>
+      <label for="test_datastore_calculate_wage_per_minute">Datastore calculate 
+        wage per minute test: </label>
+      <input type="checkbox" name="test_choice" 
+      value="test_datastore_calculate_wage_per_minute" 
+      id="test_datastore_calculate_wage_per_minute">
+      {% if test_results.result_datastore_calculate_wage_per_minute %}
+        {% set result = test_results.result_datastore_calculate_wage_per_minute %}
+        <div class="{{result}}">Calculation test is: {{ result }} </div>
+      {% endif %}
+    </div>
 
-    <label for="form_testing">Some other tests: </label>
-    <input type="checkbox" name="test_choice" value="test_something">
-    <div id="test_result">Some tests are: {{ result }} </div>
+    <div>
+      <label for="test_datastore_calculate_total_value">Datastore calculate total 
+        value test: </label>
+      <input type="checkbox" name="test_choice" 
+      value="test_datastore_calculate_total_value"
+      id="test_datastore_calculate_total_value">
+      {% if test_results.result_datastore_calculate_total_value %}
+        {% set result = test_results.result_datastore_calculate_total_value %}
+        <div class="{{result}}">Calculation test is: {{ result }} </div>
+      {% endif %}
+    </div>
 
-    <br>
+    <div>
+      <label for="test_datastore_calculate_geolocation">Datastore calculate 
+        geolocation: </label>
+      <input type="checkbox" name="test_choice" 
+      value="test_datastore_calculate_geolocation"
+      id="test_datastore_calculate_geolocation">
+      {% if test_results.result_datastore_calculate_geolocation %}
+        {% set result = test_results.result_datastore_calculate_geolocation %}
+        <div class="{{result}}">Calculation test is: {{ result }} </div>
+      {% endif %}
+    </div>
+
+    <div>
+      <label for="test_datastore_calculate_poop_value">Datastore calculate poop 
+        value: </label>
+      <input type="checkbox" name="test_choice" 
+      value="test_datastore_calculate_poop_value"
+      id="test_datastore_calculate_poop_value">
+      {% if test_results.result_datastore_calculate_poop_value %}
+        {% set result = test_results.result_datastore_calculate_poop_value %}
+        <div class="{{result}}">Calculation test is: {{ result }} </div>
+      {% endif %}
+    </div>
+
+    <div>
+      <label for="test_fake">Some other tests: </label>
+      <input type="checkbox" name="test_choice" value="test_fake" id="test_fake">
+      {% if test_results.result_fake %}
+        {% set result = test_results.result_fake %}
+        <div class="{{result}}">Fake tests are: {{ result }} </div>
+      {% endif %}
+    </div>
     
     <button for="form_testing" id="button_submit" type="submit">Submit</button>
-    <button for="form_testing" id="button_submit" type="cancel">Cancel</button>
+    <button for="form_testing" id="button_submit" type="cancel">Reset</button>
   </form> 
 {% endblock %}
