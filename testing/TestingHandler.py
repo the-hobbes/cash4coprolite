@@ -31,9 +31,10 @@ class TestDatastoreWrite():
     test_user = user_object
     dummy_write  = UserInformation(user = test_user,
                                    wage_hourly = d.wage_hourly,
-                                   wage_yearly = d.wage_yearly,
+                                   # wage_yearly = d.wage_yearly,
                                    address_street_1 = d.address_street_1,
                                    address_street_2 = d.address_street_2,
+                                   address_zip = d.address_zip,
                                    address_city = d.address_city,
                                    address_country = d.address_country,
                                    poops = [Poop(poop_length = d.poop_length_1,
@@ -58,7 +59,8 @@ class TestDatastoreCalculations():
   # TODO(pheven): we want to test the acutal logic that performs these calculations,
   # so we need to write that and then import it to be used here.
   def __init__(self):
-    pass
+    d = DummyData()
+
   def testDatastoreCalculateWagePerMinute(self):
     pass
   def testDatastoreCalculateTotalValue(self):
