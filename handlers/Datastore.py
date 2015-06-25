@@ -1,10 +1,11 @@
 # TODO(pheven): implement a simple datastore to keep track of a user account,
-# the amount of time they've spent on the toilet, their pay, their location, etc...
-# probably will want to break out the regular profile information from the other data
-# that will be calculated. 
+# the amount of time they've spent on the toilet, their pay, their location, etc
+# probably will want to break out the regular profile information from the other
+# data that will be calculated. 
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
+
 
 class UserInformation(ndb.Model):
   """Models an individual user entry with user, address, salary."""
@@ -18,3 +19,13 @@ class UserInformation(ndb.Model):
   address_city = ndb.StringProperty()
   address_zip = ndb.StringProperty()
   address_country = ndb.StringProperty()
+
+  geolocation = ndb.GeoPt() # lat,lon calc'ed from address
+
+  total_value = ndb.FloatProperty() # sum of all poops
+
+
+class Poop(ndb.Model):
+  """Represents a single poop. That was tough to type."""
+  poop_length = ndb.FloatProperty()
+  
