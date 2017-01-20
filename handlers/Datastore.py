@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+# TODO(pheven): implement a simple datastore to keep track of a user account,
+# the amount of time they've spent on the toilet, their pay, their location, etc
+# probably will want to break out the regular profile information from the other
+# data that will be calculated. 
+=======
+import sys
+sys.path.insert(0, 'libs')
+>>>>>>> e060dbf8c99e52cae07e4e7a6c5da50309dee6a8
+
+from geopy import *
+>>>>>>> f6ed4df9a3a8aba8ee0b042905e42c4e47d2dc2e
 from google.appengine.ext import ndb
 
 
@@ -13,6 +27,7 @@ class Poop(ndb.Model):
     pass
  
 
+
 class UserInformation(ndb.Model):
   """Models an individual user entry with user, address, salary, poops, etc"""
   user = ndb.UserProperty()
@@ -27,6 +42,18 @@ class UserInformation(ndb.Model):
   address_city = ndb.StringProperty()
   address_zip = ndb.StringProperty()
   address_country = ndb.StringProperty()
+<<<<<<< HEAD
+
+  geolocation = ndb.GeoPt() # lat,lon calc'ed from address
+
+  total_value = ndb.FloatProperty() # sum of all poops
+
+
+class Poop(ndb.Model):
+  """Represents a single poop. That was tough to type."""
+  poop_length = ndb.FloatProperty()
+  
+=======
   # geolocation = ndb.GeoPt() # lat, lon
 
   poops = ndb.StructuredProperty(Poop, repeated=True) # store a set of poops
@@ -37,4 +64,9 @@ class UserInformation(ndb.Model):
   #   """Override default put method to perform calculation automatically."""
   #   calculations will be done in common.py, no need to override.
 
+<<<<<<< HEAD
   #   return super(UserInformation, self).put()
+=======
+    return super(UserInformation, self).put()
+>>>>>>> e060dbf8c99e52cae07e4e7a6c5da50309dee6a8
+>>>>>>> f6ed4df9a3a8aba8ee0b042905e42c4e47d2dc2e
