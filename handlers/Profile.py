@@ -8,11 +8,12 @@ from google.appengine.api import users
 from google.appengine.ext import ndb
 from handlers.base_handler import BaseHandler
 from handlers.Datastore import UserInformation
+from handlers.Common import *
 
 class LoginHandler(BaseHandler):
-  USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-  # TODO(pheven): compile proper regular expressions to match address, city,
-  # zip code, and wages. 
+  ZIP_RE = re.compile(r'.*(\d{5}(\-\d{4})?)$')
+  WAGE_RE = re.compile(r'([0-9]*\.?[0-9]+|[0-9]+)')
+  CITY_RE = re.compile(r'^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$')
 
   def get(self):
     user = users.get_current_user()
@@ -32,6 +33,9 @@ class LoginHandler(BaseHandler):
     if has_error:
       self.render('profile.html', **params)
     else:
+      # TODO(pheven): If all is well, then we need to perform calculations to create
+      # the calculated values and add them to the datastore. These calculation functions
+      # should come from Common.py
       wage_hourly = float(self.request.get('form_hourly_wage'))
       wage_yearly = float(self.request.get('form_yearly_wage'))
       address_street_1 = self.request.get('input_address_1')
@@ -62,27 +66,40 @@ class LoginHandler(BaseHandler):
 
     params = {}
 
-    if not self.valid_wage_hourly(wage_hourly):
+    if not self.valid_wage(wage_hourly):
       params['error_wage_hourly'] = "That's not a valid hourly wage."
       return True, params
-    if not self.valid_wage_yearly(wage_yearly):
+    if not self.valid_wage(wage_yearly):
       params['error_wage_hourly'] = "That's not a valid yearly wage."
       return True, params
-    if not self.valid_address_street_1(address_street_1):
+    if not self.valid_address(address_street_1):
       params['error_wage_hourly'] = "That's not a valid address."
       return True, params
-    if not self.valid_address_street_2(address_street_2):
+    if not self.valid_address(address_street_2):
       params['error_wage_hourly'] = "That's not a valid address."
       return True, params
-    if not self.valid_address_city(address_city):
+    if not self.valid_city(address_city):
       params['error_wage_hourly'] = "That's not a valid city."
       return True, params
-    if not self.valid_address_zip(address_zip):
+    if not self.valid_zip(address_zip):
       params['error_wage_hourly'] = "That's not a valid zip code."
       return True, params
-    if not self.valid_address_country(address_country):
+    if not self.valid_country(address_country):
       params['error_wage_hourly'] = "That's not a valid country."
       return True, params
 
-  def valid_wage_hourly(self, wage_hourly):
-    return username and self.USER_RE.match(username) # TODO(pheven): see RE class variable above
+  def valid_wage(self, wage):
+    return wage and self.WAGE_RE.match(wage)
+
+  def valid_address(self, address):
+    return address and not None
+
+  def valid_zip(self, zipcode):
+    return zipcode and self.ZIP_RE.match(zipcode)
+
+  def valid_city(self, city):
+    return city and self.CITY_RE.match(city)
+
+  def valid_country(self, country):
+    # maybe validate a country better?
+    return city and self.CITY_RE.match(city)
